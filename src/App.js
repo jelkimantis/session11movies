@@ -1,6 +1,9 @@
 import React from 'react';
 import axios from 'axios';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Card from 'react-bootstrap/Card';
 import './App.css';
+
 
 class App extends React.Component {
   constructor(props) {
@@ -28,22 +31,30 @@ class App extends React.Component {
   }
 
   render() {
-    // let movies = [];
-    // for(let i = 0; i < this.state.movies.length; i++)
-    // {
-    //   movies.push(<h2>{this.state.movies[i].title}</h2>)
-    // }
+    let movies = [];
+    for(let i = 0; i < this.state.movies.length; i++)
+    {
+      let movieUrl = "https://image.tmdb.org/t/p/w220_and_h330_face/"+ this.state.movies[i].poster_path;
+      movies.push(<Card style={{ width: '16rem' }}>
+                    <Card.Img variant="top" src={movieUrl} />
+                    <Card.Body>
+                      <Card.Title> {this.state.movies[i].title}</Card.Title>
+                      <Card.Text>{this.state.movies[i].overview}</Card.Text>
+                      </Card.Body>
+                  </Card>)
+    }
 
     return (
-      <div className="App">
-        <h1>Check out these movies!!!!!!</h1>
-        {this.state.movies.map(movie =>
-          {
-            return <h2>{movie.title} ({movie.release_date})</h2>;
-          })}
+      <div className="App Darkmode">
+      <h1>It's MOOOOOVIES</h1>
+      <div className="Movie-grid">
+        {movies}
+      </div>
       </div>
     );
   }
 }
+
+
 
 export default App;

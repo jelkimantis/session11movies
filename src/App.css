@@ -1,7 +1,15 @@
+
+
 .App {
   text-align: center;
 }
-
+.Darkmode{
+  background-color: #111111;
+  color: gainsboro;
+}
+.card {
+  background-color: black;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -35,4 +43,10 @@
   to {
     transform: rotate(360deg);
   }
+}
+.Movie-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  viewport-fit: 90%;
+  margin: 5%;
 }
