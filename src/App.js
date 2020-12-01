@@ -2,7 +2,9 @@ import React from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Card from 'react-bootstrap/Card';
-import './App.css';
+import './App.scss';
+import './ToggleSwitch.scss';
+import ToggleSwitch from './ToggleSwitch.js';
 
 
 class App extends React.Component {
@@ -10,8 +12,12 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      movies: []
+      movies: [],
+      getClassNameApp: "App",
+      getClassNameCard: "",
     }
+
+    this.darkmodeSwitch = this.darkmodeSwitch.bind(this);
   }
 
   componentDidMount() {
@@ -30,6 +36,20 @@ class App extends React.Component {
 
   }
 
+  darkmodeSwitch() {
+    // console.log("hi");
+    console.log(this.state.getClassNameApp);
+    if (this.state.getClassNameApp==="App") {
+      this.setState({getClassNameApp: "App Darkmode", getClassNameCard: "cardDarkmode"});
+      console.log(this.state.getClassNameApp);
+    }
+    else {
+      this.setState({getClassNameApp: "App", getClassNameCard: ""});
+      console.log(this.state.getClassNameApp);
+    }
+    // this.setState.getClassNameApp==="App Darkmode" ? this.setState.getClassNameApp = "App" : this.setState.getClassNameApp = "App Darkmode";
+  }
+
   render() {
     let movies = [];
     for(let i = 0; i < this.state.movies.length; i++)
@@ -37,7 +57,7 @@ class App extends React.Component {
       let movieUrl = "https://image.tmdb.org/t/p/w220_and_h330_face/"+ this.state.movies[i].poster_path;
       movies.push(<Card style={{ width: '16rem' }}>
                     <Card.Img variant="top" src={movieUrl} />
-                    <Card.Body>
+                    <Card.Body className={this.state.getClassNameCard}>
                       <Card.Title> {this.state.movies[i].title}</Card.Title>
                       <Card.Text>{this.state.movies[i].overview}</Card.Text>
                       </Card.Body>
@@ -45,8 +65,9 @@ class App extends React.Component {
     }
 
     return (
-      <div className="App Darkmode">
+      <div className={this.state.getClassNameApp}>
       <h1>It's MOOOOOVIES</h1>
+      <ToggleSwitch Name="Darkmode" Checked="false" changeSwitch={this.darkmodeSwitch} />
       <div className="Movie-grid">
         {movies}
       </div>

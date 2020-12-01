@@ -3,13 +3,19 @@
 .App {
   text-align: center;
 }
-.Darkmode{
+.Darkmode {
   background-color: #111111;
   color: gainsboro;
 }
-.card {
+.cardDarkmode {
   background-color: black;
+  border: 1px solid black;
 }
+
+.card {
+  margin-bottom: 5%;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
