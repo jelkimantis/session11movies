@@ -55,13 +55,15 @@ class App extends React.Component {
     for(let i = 0; i < this.state.movies.length; i++)
     {
       let movieUrl = "https://image.tmdb.org/t/p/w220_and_h330_face/"+ this.state.movies[i].poster_path;
-      movies.push(<Card style={{ width: '16rem' }}>
+      movies.push(
+                    <Card style={{ width: '16rem' }}>
                     <Card.Img variant="top" src={movieUrl} />
                     <Card.Body className={this.state.getClassNameCard}>
                       <Card.Title> {this.state.movies[i].title}</Card.Title>
                       <Card.Text>{this.state.movies[i].overview}</Card.Text>
                       </Card.Body>
-                  </Card>)
+                      </Card>
+                  )
     }
 
     return (
@@ -69,7 +71,7 @@ class App extends React.Component {
       <h1>It's MOOOOOVIES</h1>
       <ToggleSwitch Name="Darkmode" Checked="false" changeSwitch={this.darkmodeSwitch} />
       <div className="Movie-grid">
-        {movies}
+        {movies} 
       </div>
       </div>
     );
